@@ -1,0 +1,87 @@
+name: CleanSwift
+options:
+  bundleIdPrefix: ru.it4it
+  defaultConfig: Dev
+  deploymentTarget:
+    iOS: '15.0'
+  groupSortPosition: top
+schemes:
+  Dev:
+    analyze:
+      config: Dev
+    archive:
+      config: Dev
+    build:
+      targets:
+        CleanSwift: all
+    profile:
+      config: Dev
+    run:
+      config: Dev
+      environmentVariables:
+      - isEnabled: false
+        value: disable
+        variable: OS_ACTIVITY_MODE
+    test:
+      config: Dev
+
+settings:
+  base:
+    CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: 'YES'
+    CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: 'YES'
+    CURRENT_PROJECT_VERSION: 1
+    DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+    ENABLE_BITCODE: 'NO'
+    ENABLE_PREVIEWS: 'YES'
+    IPHONEOS_DEPLOYMENT_TARGET: '15.0'
+    MTL_ENABLE_DEBUG_INFO: 'YES'
+    OTHER_LDFLAGS: -weak_framework SwiftUI
+    SUPPORTS_MACCATALYST: 'NO'
+    SWIFT_COMPILATION_MODE: wholemodule
+    SWIFT_VERSION: 5.5
+    VERSION_NUMBER: '1.0'
+    APP_GROUP_ENTITLEMENT: "group.ru.cleanSwift"
+    KEYCHAIN_ENTITLEMENT: "N7B9Y8WYA7.ru.cleanSwift"
+    DEVELOPMENT_TEAM: "N7B9Y8WYA7"
+    CODE_SIGN_STYLE: "Manual"
+  configs:
+    Dev:
+      LD_RUNPATH_SEARCH_PATHS: $(inherited) @loader_path/../
+      OTHER_SWIFT_FLAGS: "-D DEBUG"
+      SWIFT_COMPILATION_MODE: singlefile
+targets:
+  CleanSwift:
+    platform: iOS
+    settings:
+      base:
+        INFOPLIST_FILE: CleanSwift/SupportingFiles/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: ru.cleanswift
+        STRIP_STYLE: debugging
+        STRIP_SWIFT_SYMBOLS: 'NO'
+        TARGETED_DEVICE_FAMILY: 1,2
+        VALIDATE_WORKSPACE: 'NO'
+        VERSIONING_SYSTEM: apple-generic
+        CODE_SIGN_STYLE: "Manual"
+        CODE_SIGN_IDENTITY: "Apple Development"
+        PROVISIONING_PROFILE_SPECIFIER: "match Development ru.cleanSwift"
+      configs:
+        Dev:
+          SWIFT_OPTIMIZATION_LEVEL: -Onone
+    sources:
+    - path: CleanSwift
+    type: application
+    
+  CleanSwiftTests:
+    type: bundle.unit-test
+    platform: iOS
+    dependencies:
+    - target: CleanSwift
+    
+    platform: iOS
+    settings:
+      INFOPLIST_FILE: CleanSwiftTests/SupportingFiles/Info.plist
+      PRODUCT_BUNDLE_IDENTIFIER: ru.cleanSwift.tests
+      TEST_HOST: "$(BUILT_PRODUCTS_DIR)/CleanSwift.app/CleanSwift"
+
+configs:
+  Dev: debug
