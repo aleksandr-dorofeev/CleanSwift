@@ -5,7 +5,7 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  // MARK: - Public methods
+    // MARK: - Public methods
 
     func application(
         _ application: UIApplication,

@@ -1,2 +1,10 @@
 // SceneDelegate.swift
 // Copyright © Aleksandr Dorofeev. All rights reserved.
+
+"astronomyFullUrl" = "https://go-apod.herokuapp.com/apod";
+"astronomyTableCellID" = "AstronomyTableViewCell";
+"astronomyDetailTableCellID" = "AstronomyDetailTableViewCell";
+"arialFont" = "Arial";
+"deepLinkButtonName" = "link";
+"changeTextButtonName" = "Uppercase";
+"astronomyPictureLink" = "astronomy-picture-of-the-day://";
