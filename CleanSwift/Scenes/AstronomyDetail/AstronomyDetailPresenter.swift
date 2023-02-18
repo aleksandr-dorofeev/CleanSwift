@@ -11,24 +11,24 @@ final class AstronomyDetailPresenter: AstronomyDetailPresentationLogic {
 
     // MARK: - Public methods
 
-    func presentInitForm(_ response: AstronomyDetailModels.InitForm.Response) {
-        let viewModel = AstronomyDetailModels.InitForm.ViewModel(
+    func presentInitForm(_ response: ResponseAstronomyDetailModel) {
+        let viewModel = ViewModelAstronomyDetailModel(
             explanation: response.explanation,
             title: response.title
         )
         view?.displayInitForm(viewModel)
     }
 
-    func presentDetailChanged(_ response: AstronomyDetailModels.DetailChanged.Response) {
-        let viewModel = AstronomyDetailModels.DetailChanged.ViewModel(
+    func presentDetailChanged(_ response: ResponseChangedAstronomyDetailModel) {
+        let viewModel = ViewModelChangedAstronomyDetailModel(
             explanation: response.explanation.uppercased()
         )
         view?.displayDetailChanged(viewModel)
     }
 
-    func presentDeepLink(_ response: AstronomyDetailModels.DeepLinking.Response) {
+    func presentDeepLink(_ response: ResponseDeepLinkModel) {
         guard let url = URL(string: response.link) else { return }
-        let viewModel = AstronomyDetailModels.DeepLinking.ViewModel(link: url, linkID: response.linkID)
+        let viewModel = ViewModelDeepLinkModel(link: url, linkID: response.linkID)
         view?.displayDeepLink(viewModel)
     }
 }

@@ -1,22 +1,12 @@
 // Astronomy.swift
 // Copyright © Aleksandr Dorofeev. All rights reserved.
 
-import Foundation
-
 /// Структура астрономического запроса
 struct Astronomy: Decodable {
-    let copyright: String
-    let date: String
+    /// Описание созвездия
     let explanation: String
-    let hdurl: String
+    /// Наименование
     let title: String
+    /// Ссылка на изображение
     let url: String
-
-    enum CodingKeys: String, CodingKey {
-        case copyright
-        case date
-        case explanation
-        case hdurl
-        case title, url
-    }
 }

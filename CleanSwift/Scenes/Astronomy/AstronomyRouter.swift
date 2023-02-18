@@ -20,8 +20,8 @@ final class AstronomyRouter: AstronomyRoutingLogic {
 
     func routeToAstronomyDetailScreen() {
         let astronomyDetailViewController = AstronomyDetailAssembly.build(
-            title: dataStore.title ?? "",
-            explanation: dataStore.explanation ?? ""
+            title: dataStore.title ?? String(),
+            explanation: dataStore.explanation ?? String()
         )
         viewController?.navigationController?.pushViewController(astronomyDetailViewController, animated: true)
     }

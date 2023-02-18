@@ -1,7 +1,6 @@
 // AstronomyDetailViewController.swift
 // Copyright © Aleksandr Dorofeev. All rights reserved.
 
-import StoreKit
 import UIKit
 
 /// Представление экрана деталей о созвездии
@@ -17,6 +16,10 @@ final class AstronomyDetailViewController: UIViewController {
     private enum ButtonTag: Int {
         case firstButton = 1
         case secondButton = 2
+    }
+
+    private enum IntegerConstants {
+        static let buttonRange = 0 ..< 2
     }
 
     // MARK: - Public properties
@@ -61,10 +64,10 @@ final class AstronomyDetailViewController: UIViewController {
         loadAstronomyDetailInfo()
     }
 
-    func createFooter() -> UIView {
+    private func createFooter() -> UIView {
         let footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         let size = (view.frame.size.width - 200) / 2
-        for footerButton in 0 ..< 2 {
+        for footerButton in IntegerConstants.buttonRange {
             let button =
                 UIButton(frame: CGRect(
                     x: CGFloat(footerButton) * size + (CGFloat(footerButton) + 1 * 10),
@@ -84,7 +87,7 @@ final class AstronomyDetailViewController: UIViewController {
     }
 
     private func loadAstronomyDetailInfo() {
-        let request = AstronomyDetailModels.InitForm.Request()
+        let request = RequestAstronomyDetailModel()
         interactor?.requestInitForm(request)
     }
 
@@ -117,13 +120,13 @@ final class AstronomyDetailViewController: UIViewController {
     @objc private func didTapButtonAction(_ sender: UIButton) {
         switch sender.tag {
         case ButtonTag.firstButton.rawValue:
-            let request = AstronomyDetailModels.DeepLinking.Request(
+            let request = RequestDeepLinkModel(
                 link: Constants.astronomyPictureLink,
                 linkID: Identifiers.deepLinkID
             )
             interactor?.requestDeepLink(request)
         case ButtonTag.secondButton.rawValue:
-            let request = AstronomyDetailModels.DetailChanged.Request(explanation: explanation)
+            let request = RequestChangedAstronomyDetailModel(explanation: explanation)
             interactor?.requestDetailChanged(request)
         default:
             break
@@ -136,7 +139,7 @@ final class AstronomyDetailViewController: UIViewController {
 extension AstronomyDetailViewController: AstronomyDetailDisplayLogic {
     // MARK: - Public methods
 
-    func displayInitForm(_ viewModel: AstronomyDetailModels.InitForm.ViewModel) {
+    func displayInitForm(_ viewModel: ViewModelAstronomyDetailModel) {
         DispatchQueue.main.async {
             self.title = viewModel.title
             self.explanation = viewModel.explanation
@@ -144,14 +147,14 @@ extension AstronomyDetailViewController: AstronomyDetailDisplayLogic {
         }
     }
 
-    func displayDetailChanged(_ viewModel: AstronomyDetailModels.DetailChanged.ViewModel) {
+    func displayDetailChanged(_ viewModel: ViewModelChangedAstronomyDetailModel) {
         DispatchQueue.main.async {
             self.explanation = viewModel.explanation
             self.astronomyDetailTableView.reloadData()
         }
     }
 
-    func displayDeepLink(_ viewModel: AstronomyDetailModels.DeepLinking.ViewModel) {
+    func displayDeepLink(_ viewModel: ViewModelDeepLinkModel) {
         DispatchQueue.main.async {
             self.deepLinking(url: viewModel.link, id: viewModel.linkID)
         }

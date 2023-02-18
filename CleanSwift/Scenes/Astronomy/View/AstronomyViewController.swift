@@ -79,7 +79,7 @@ final class AstronomyViewController: UIViewController {
 extension AstronomyViewController: AstronomyDisplayLogic {
     // MARK: - Public methods
 
-    func displayAstronomy(_ viewModel: AstronomyModels.InitForm.ViewModel) {
+    func displayAstronomy(_ viewModel: ViewModelAstronomyModel) {
         DispatchQueue.main.async {
             self.imageData = viewModel.data
             self.astronomyTitle = viewModel.title

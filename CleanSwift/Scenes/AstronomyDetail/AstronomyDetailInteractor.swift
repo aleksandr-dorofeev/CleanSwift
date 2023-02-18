@@ -1,8 +1,6 @@
 // AstronomyDetailInteractor.swift
 // Copyright © Aleksandr Dorofeev. All rights reserved.
 
-import Foundation
-
 /// Интерактор экрана деталей
 final class AstronomyDetailInteractor: AstronomyDetailBusinessLogic, AstronomyDetailDataStoreProtocol {
     // MARK: - Public properties
@@ -20,18 +18,18 @@ final class AstronomyDetailInteractor: AstronomyDetailBusinessLogic, AstronomyDe
 
     // MARK: - Public methods
 
-    func requestInitForm(_ request: AstronomyDetailModels.InitForm.Request) {
-        let response = AstronomyDetailModels.InitForm.Response(explanation: explanation, title: title)
+    func requestInitForm(_ request: RequestAstronomyDetailModel) {
+        let response = ResponseAstronomyDetailModel(explanation: explanation, title: title)
         presenter?.presentInitForm(response)
     }
 
-    func requestDetailChanged(_ request: AstronomyDetailModels.DetailChanged.Request) {
-        let response = AstronomyDetailModels.DetailChanged.Response(explanation: explanation)
+    func requestDetailChanged(_ request: RequestChangedAstronomyDetailModel) {
+        let response = ResponseChangedAstronomyDetailModel(explanation: explanation)
         presenter?.presentDetailChanged(response)
     }
 
-    func requestDeepLink(_ request: AstronomyDetailModels.DeepLinking.Request) {
-        let response = AstronomyDetailModels.DeepLinking.Response(link: request.link, linkID: request.linkID)
+    func requestDeepLink(_ request: RequestDeepLinkModel) {
+        let response = ResponseDeepLinkModel(link: request.link, linkID: request.linkID)
         presenter?.presentDeepLink(response)
     }
 }

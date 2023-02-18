@@ -20,6 +20,8 @@ final class AstronomyDetailRouter: AstronomyDetailRoutingLogic {
         self.dataStore = dataStore
     }
 
+    // MARK: - Public methods
+
     func showDeepLink(url: URL, linkId: Int) {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

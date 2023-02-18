@@ -1,8 +1,6 @@
 // AstronomyPresenter.swift
 // Copyright © Aleksandr Dorofeev. All rights reserved.
 
-import Foundation
-
 /// Презентер для экрана с астрономической информацией
 final class AstronomyPresenter: AstronomyPresentationLogic {
     // MARK: - Public properties
@@ -11,8 +9,8 @@ final class AstronomyPresenter: AstronomyPresentationLogic {
 
     // MARK: - Public methods
 
-    func presentAstronomy(_ response: AstronomyModels.InitForm.Response) {
-        let viewModel = AstronomyModels.InitForm.ViewModel(
+    func presentAstronomy(_ response: ResponseAstronomyModel) {
+        let viewModel = ViewModelAstronomyModel(
             title: response.title,
             explanation: response.explanation,
             data: response.data

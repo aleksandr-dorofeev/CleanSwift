@@ -1,26 +1,24 @@
 // AstronomyInteractor.swift
 // Copyright © Aleksandr Dorofeev. All rights reserved.
 
-import Foundation
-
 /// Интерактор астрономического экрана
 final class AstronomyInteractor: AstronomyBusinessLogic, AstronomyDataStoreProtocol {
     // MARK: - Public properties
 
     var presenter: AstronomyPresentationLogic?
-    var networkAstronomyWorker: AstronomyNetworkWorkerProtocol
+    var networkAstronomyWorker: AstronomyNetworkWorkerBusinessLogicProtocol
     var title: String?
     var explanation: String?
 
     // MARK: - Initializers
 
-    init(networkAstronomyWorker: AstronomyNetworkWorkerProtocol) {
+    init(networkAstronomyWorker: AstronomyNetworkWorkerBusinessLogicProtocol) {
         self.networkAstronomyWorker = networkAstronomyWorker
     }
 
     // MARK: - Public methods
 
-    func fetchAstronomy(_ request: AstronomyModels.InitForm.Request) {
+    func fetchAstronomy(_ request: RequestAstronomyModel) {
         networkAstronomyWorker.fetchAstronomyData { result in
             switch result {
             case let .success(data):
@@ -37,9 +35,9 @@ final class AstronomyInteractor: AstronomyBusinessLogic, AstronomyDataStoreProto
         networkAstronomyWorker.fetchAstronomyImageData(url: url) { result in
             switch result {
             case let .success(data):
-                let response = AstronomyModels.InitForm.Response(
-                    title: self.title ?? "",
-                    explanation: self.explanation ?? "",
+                let response = ResponseAstronomyModel(
+                    title: self.title ?? String(),
+                    explanation: self.explanation ?? String(),
                     data: data
                 )
                 self.presenter?.presentAstronomy(response)

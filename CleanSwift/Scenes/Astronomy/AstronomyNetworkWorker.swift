@@ -4,7 +4,7 @@
 import Foundation
 
 /// Воркер сетевого запроса для экрана с астрономической информацией
-final class AstronomyNetworkWorker: AstronomyNetworkWorkerProtocol {
+final class AstronomyNetworkWorker: AstronomyNetworkWorkerBusinessLogicProtocol {
     // MARK: - Private properties
 
     private let networkService: NetworkServiceProtocol
