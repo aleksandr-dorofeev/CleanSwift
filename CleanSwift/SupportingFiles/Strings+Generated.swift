@@ -12,7 +12,42 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
-internal enum Constants {}
+internal enum Constants {
+    /// Arial
+    internal static let arialFont = Constants.tr("Localizable", "arialFont", fallback: "Arial")
+    /// AstronomyDetailTableViewCell
+    internal static let astronomyDetailTableCellID = Constants.tr(
+        "Localizable",
+        "astronomyDetailTableCellID",
+        fallback: "AstronomyDetailTableViewCell"
+    )
+    /// https://go-apod.herokuapp.com/apod
+    internal static let astronomyFullUrl = Constants.tr(
+        "Localizable",
+        "astronomyFullUrl",
+        fallback: "https://go-apod.herokuapp.com/apod"
+    )
+    /// astronomy-picture-of-the-day://
+    internal static let astronomyPictureLink = Constants.tr(
+        "Localizable",
+        "astronomyPictureLink",
+        fallback: "astronomy-picture-of-the-day://"
+    )
+    /// AstronomyTableViewCell
+    internal static let astronomyTableCellID = Constants.tr(
+        "Localizable",
+        "astronomyTableCellID",
+        fallback: "AstronomyTableViewCell"
+    )
+    /// Uppercase
+    internal static let changeTextButtonName = Constants.tr(
+        "Localizable",
+        "changeTextButtonName",
+        fallback: "Uppercase"
+    )
+    /// link
+    internal static let deepLinkButtonName = Constants.tr("Localizable", "deepLinkButtonName", fallback: "link")
+}
 
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
